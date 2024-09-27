@@ -119,6 +119,8 @@ public class WavUtility
 		int i = 0;
 		while (i < convertedSize) {
 			offset = i * x + headerOffset;
+			if (offset + x > source.Length)
+				break;
 			data [i] = (float)BitConverter.ToInt16 (source, offset) / maxValue;
 			++i;
 		}
@@ -147,6 +149,8 @@ public class WavUtility
 		int i = 0;
 		while (i < convertedSize) {
 			offset = i * x + headerOffset;
+			if (offset + x > source.Length)
+				break;
 			Buffer.BlockCopy (source, offset, block, 1, x);
 			data [i] = (float)BitConverter.ToInt32 (block, 0) / maxValue;
 			++i;
@@ -174,6 +178,8 @@ public class WavUtility
 		int i = 0;
 		while (i < convertedSize) {
 			offset = i * x + headerOffset;
+			if (offset + x > source.Length)
+				break;
 			data [i] = (float)BitConverter.ToInt32 (source, offset) / maxValue;
 			++i;
 		}
